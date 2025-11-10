@@ -1,0 +1,28 @@
+Backend/node_modules
+Backend/.evn
+Backend/.vscode/*
+
+# Logs
+frontEnd/logs
+frontEnd/*.log
+frontEnd/npm-debug.log*
+frontEnd/yarn-debug.log*
+frontEnd/yarn-error.log*
+frontEnd/pnpm-debug.log*
+frontEnd/lerna-debug.log*
+
+frontEnd/node_modules
+frontEnd/dist
+frontEnd/dist-ssr
+frontEnd/*.local
+
+# Editor directories and files
+frontEnd/.vscode/*
+frontEnd/!.vscode/extensions.json
+frontEnd/.idea
+frontEnd/.DS_Store
+frontEnd/*.suo
+frontEnd/*.ntvs*
+frontEnd/*.njsproj
+frontEnd/*.sln
+frontEnd/*.sw?
