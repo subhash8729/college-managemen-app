@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
-import { useAuthStore } from '../stores/useAuthStore';
-import axiosInstance from '../functions/axios';
+import Navbar from '../../components/managerComponents/Navbar';
+import { useAuthStore } from '../../stores/useAuthStore';
+import axiosInstance from '../../functions/axios';
 
 const Comingsoon = () => {
   const { isLoading, setAuthUser, setIsLoading, authUser } = useAuthStore();
@@ -23,7 +23,7 @@ const Comingsoon = () => {
         <div className='flex flex-wrap gap-5 p-4'>
       {
         data.map((value) => (
-          <div key={value.number} className='bg-white/20 flex flex-col basis-[400px] flex-1 p-3 backdrop-blur-sm border border-white/30 rounded-lg shadow-lg' >
+          <div key={value.number} className='bg-white/20 flex flex-col w-full basis-[400px] flex-1 p-3 backdrop-blur-sm border border-white/30 rounded-lg shadow-lg' >
             {/* for icon and heading */}
             <div className='w-full flex'>
               <div className='w-12 h-12 p-3 rounded-sm'>

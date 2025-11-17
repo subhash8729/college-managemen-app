@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BarChart3, Users, TrendingUp, Settings, Bell, Search } from 'lucide-react';
-import NavbarManager from '../components/NavbarManager';
+import NavbarManager from '../../components/managerComponents/NavbarManager';
+import Sidebar from '../../components/managerComponents/Sidebar';
+import TopNavbar from '../../components/managerComponents/TopNavbar';
 
 export default function DashboardHomepage() {
   const canvasRef = useRef(null);
@@ -48,25 +50,10 @@ export default function DashboardHomepage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
+      <TopNavbar />
       <NavbarManager />
-      <header className="bg-slate-800/50 backdrop-blur-sm border-b border-slate-700">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-          <div className="flex items-center gap-4">
-            <button className="p-2 text-slate-400 hover:text-white transition">
-              <Search size={20} />
-            </button>
-            <button className="p-2 text-slate-400 hover:text-white transition relative">
-              <Bell size={20} />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full"></span>
-            </button>
-            <button className="p-2 text-slate-400 hover:text-white transition">
-              <Settings size={20} />
-            </button>
-          </div>
-        </div>
-      </header>
-
+      <Sidebar props={"manager"} />
+      
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Navigation Tabs */}
         <div className="flex gap-4 mb-8">

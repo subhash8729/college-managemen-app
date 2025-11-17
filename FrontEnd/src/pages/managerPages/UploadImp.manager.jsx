@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import NavbarManager from '../components/NavbarManager'
-import axiosInstance from '../functions/axios';
+import NavbarManager from '../../components/managerComponents/NavbarManager'
+import axiosInstance from '../../functions/axios';
+import TopNavbar from '../../components/managerComponents/TopNavbar';
+import Sidebar from '../../components/managerComponents/Sidebar';
 
-export const ManagerPage = () => {
+export const Upload_important_info = () => {
     const [visible_confirm, setvisible_confirm] = useState(false)
 
 
@@ -43,8 +45,9 @@ export const ManagerPage = () => {
 
     return (
         <div className='w-full relative min-h-screen bg-gradient-to-br from-[#10172C] via-[#453181] to-[#3B1C63]'>
+            <TopNavbar />
             <NavbarManager />
-            
+            <Sidebar />
             <div className={`${visible_confirm? "w-full" : "w-0"}  transition-all flex duration-500 h-screen fixed inset-0 z-10 items-center justify-center backdrop-blur-sm bg-black/40`}>
                 <div className={`${visible_confirm? "opacity-100 duration-300 delay-200" : "opacity-0 duration-0"} transition-all bg-white/90 p-6 rounded-2xl shadow-2xl text-center space-y-4 max-w-sm w-[90%]`}>
                     <h1 className="text-lg font-semibold text-gray-800">

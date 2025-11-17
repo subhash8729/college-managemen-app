@@ -1,11 +1,11 @@
 import mysql2 from "mysql2/promise"
 
 const db = await mysql2.createConnection({
-  host:"sql12.freesqldatabase.com",
-  password:"Fb9ejpxhhe",
-  user:"sql12806285",
+  host:"localhost",
+  password:"Subhash@8729",
+  user:"root",
   port:3306,
-  database:"sql12806285"
+  database:"college_db"
 })
 
 

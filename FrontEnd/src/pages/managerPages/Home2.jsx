@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Loader } from 'lucide-react'
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/managerComponents/Navbar';
 
 const Home2 = () => {
   const canvasRef = useRef(null);

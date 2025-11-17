@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useMenuStore } from '../stores/useUiStore'
+import { useMenuStore } from '../../stores/useUiStore'
 
 const NavbarStudent = () => {
     const {setSelectedMenu , selectedMenu} = useMenuStore();

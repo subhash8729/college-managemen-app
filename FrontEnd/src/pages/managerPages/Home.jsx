@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import '../css files/home.css'
-import Navbar from '../components/Navbar'
-import axiosInstance from "../functions/axios.js"
-import { useAuthStore } from '../stores/useAuthStore.js'
+import "../../css_files/home.css"
+import Navbar from '../../components/managerComponents/Navbar.jsx'
+import axiosInstance from "../../functions/axios.js"
+import { useAuthStore } from '../../stores/useAuthStore.js'
 import { Loader } from 'lucide-react'
+import TopNavbar from '../../components/managerComponents/TopNavbar.jsx'
+import Sidebar from '../../components/managerComponents/Sidebar.jsx'
 
 const Home = () => {
   const { isLoading, setAuthUser, setIsLoading, authUser } = useAuthStore();
@@ -42,7 +44,7 @@ const Home = () => {
       navigate(`/${res.data.role}`)
     } catch (error) {
       setIsLoading(false)
-      console.log(error)
+      console.log(error);
     }
 
 
@@ -58,7 +60,9 @@ const Home = () => {
           <Loader className='scale-300 animate-spin' />
         </div>)
       }
+      <TopNavbar />
       <Navbar />
+      <Sidebar />
 
       <div className='w-full flex px-3 flex-col bg-blue-400/20'>
         {/* college info */}
