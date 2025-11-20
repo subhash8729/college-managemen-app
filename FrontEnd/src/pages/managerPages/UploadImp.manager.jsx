@@ -3,13 +3,18 @@ import NavbarManager from '../../components/managerComponents/NavbarManager'
 import axiosInstance from '../../functions/axios';
 import TopNavbar from '../../components/managerComponents/TopNavbar';
 import Sidebar from '../../components/managerComponents/Sidebar';
+import { useManagerStore } from '../../stores/useManagerStore';
+import { useAuthStore } from '../../stores/useAuthStore';
+import { Loader } from 'lucide-react';
 
 export const Upload_important_info = () => {
-    const [visible_confirm, setvisible_confirm] = useState(false)
+    const { isLoading } = useAuthStore();
+    const [visible_confirm, setvisible_confirm] = useState(false);
+    const { Upload_info } = useManagerStore();
 
 
     const [formData, setFormData] = useState({
-        icon: 0,
+        icon: "zero.png",
         heading: "",
         main: "",
         description: "",
@@ -34,22 +39,30 @@ export const Upload_important_info = () => {
 
     const handle_submit = async (e) => {
         e.preventDefault();
-        setFormData(prev => ({ ...prev, token: localStorage.getItem("token") }));
-        const res = await axiosInstance.post("/manager/upload-important-info", formData);
-        console.log(formData);
-        console.log(res);
+
+        //calling upload form data function
+        //getting response
+        //if error show error to manager
+        //if everything goes fine show success message
+        //clear the form
+        const res = await Upload_info(formData);
+        setvisible_confirm(false)
     }
-    useEffect(() => {
-        console.log(formData)
-    }, [formData])
 
     return (
         <div className='w-full relative min-h-screen bg-gradient-to-br from-[#10172C] via-[#453181] to-[#3B1C63]'>
+
+            {
+                isLoading && (<div className='w-full h-screen top-0 fixed z-20 bg-white/20 backdrop-blur-[5px] flex items-center justify-center'>
+                    <Loader className='scale-300 animate-spin' />
+                </div>)
+            }
+
             <TopNavbar />
             <NavbarManager />
             <Sidebar />
-            <div className={`${visible_confirm? "w-full" : "w-0"}  transition-all flex duration-500 h-screen fixed inset-0 z-10 items-center justify-center backdrop-blur-sm bg-black/40`}>
-                <div className={`${visible_confirm? "opacity-100 duration-300 delay-200" : "opacity-0 duration-0"} transition-all bg-white/90 p-6 rounded-2xl shadow-2xl text-center space-y-4 max-w-sm w-[90%]`}>
+            <div className={`${visible_confirm ? "w-full" : "w-0"}  transition-all flex duration-500 h-screen fixed inset-0 z-10 items-center justify-center backdrop-blur-sm bg-black/40`}>
+                <div className={`${visible_confirm ? "opacity-100 duration-300 delay-200" : "opacity-0 duration-0"} transition-all bg-white/90 p-6 rounded-2xl shadow-2xl text-center space-y-4 max-w-sm w-[90%]`}>
                     <h1 className="text-lg font-semibold text-gray-800">
                         Upload the Message in Important Information Section
                     </h1>
@@ -57,7 +70,7 @@ export const Upload_important_info = () => {
                         <button onClick={handle_submit} className="px-5 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition">
                             Confirm
                         </button>
-                        <button onClick={()=>setvisible_confirm(false)} className="px-5 py-2 rounded-xl bg-gray-300 hover:bg-gray-400 transition">
+                        <button onClick={() => setvisible_confirm(false)} className="px-5 py-2 rounded-xl bg-gray-300 hover:bg-gray-400 transition">
                             Cancel
                         </button>
                     </div>
@@ -74,11 +87,11 @@ export const Upload_important_info = () => {
                         </div>
                         <div className='mt-7'>
                             <select className='border-2 p-2 text-white bg-black/60 border-white focus:border-green-500 focus:outline-none rounded-lg' name="icon" id="icon">
-                                <option value="0">default - Message Icon</option>
-                                <option value="1">Black Dot Icon</option>
-                                <option value="2">Mobile Icon</option>
-                                <option value="3">Education Icon</option>
-                                <option value="4">Money Icon</option>
+                                <option value="zero.png">default - Message Icon</option>
+                                <option value="one.png">Black Dot Icon</option>
+                                <option value="two.png">Mobile Icon</option>
+                                <option value="three.png">Education Icon</option>
+                                <option value="four.png">Money Icon</option>
                             </select>
                         </div>
                     </div>
@@ -121,7 +134,7 @@ export const Upload_important_info = () => {
                     </div>
                 </div>
                 <div className='flex justify-center'>
-                    <button onClick={()=>setvisible_confirm(true)} className='bg-black/50 text-white font-bold px-6 py-4 rounded-2xl mx-auto' type="button">Submit Message</button>
+                    <button onClick={() => setvisible_confirm(true)} className='bg-black/50 text-white font-bold px-6 py-4 rounded-2xl mx-auto' type="button">Submit Message</button>
 
                 </div>
             </form>

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/managerComponents/Navbar';
 import { useAuthStore } from '../../stores/useAuthStore';
 import axiosInstance from '../../functions/axios';
+import TopNavbar from '../../components/managerComponents/TopNavbar';
+import Sidebar from '../../components/managerComponents/Sidebar';
 
-const Comingsoon = () => {
+const Important_info_home = () => {
   const { isLoading, setAuthUser, setIsLoading, authUser } = useAuthStore();
   const [data, setData] = useState([])
   //show loading bar
@@ -19,7 +21,9 @@ const Comingsoon = () => {
 
   return (
     <div className='w-full min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900'>
+      <TopNavbar />
       <Navbar />
+      <Sidebar />
         <div className='flex flex-wrap gap-5 p-4'>
       {
         data.map((value) => (
@@ -56,4 +60,4 @@ const Comingsoon = () => {
   );
 };
 
-export default Comingsoon;
+export default Important_info_home;

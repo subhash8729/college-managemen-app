@@ -1,4 +1,4 @@
-import { verifyToken } from "../functions/controllers.functions";
+import { verifyToken } from "../functions/controllers.functions.js";
 
 
 export const protectRoute = (req,res)=>{
@@ -14,5 +14,21 @@ export const protectRoute = (req,res)=>{
     } catch (error) {
         console.log("Error in checkAuth controller ERROR- ",error.message)
         res.status(500).json({message:"Server Error"});
+    }
+}
+
+export const verifyRole = (req,res,next) =>{
+    try {
+        const token = req.body?.token || null;
+        if(!token) return res.status(400).json({message:"token not found"});
+        const data = verifyToken(token)
+        if(!data) return res.status(400).json({message:"!unauthorised token"});
+        console.log(data);
+        req.body.role = data.role;
+        next();
+
+    } catch (error) {
+        console.log("Error in verifyToken middleware ERROR ->", error.message)
+        res.status(500).json({message:"server error"})
     }
 }

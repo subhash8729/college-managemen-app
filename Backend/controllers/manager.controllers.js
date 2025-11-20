@@ -19,7 +19,7 @@ export const uploadImportantInfo = async (req, res) => {
   (icon, heading, main, description, link1, link2, link3)
   VALUES (?, ?, ?, ?, ?, ?, ?)`,
   [
-    Number(icon),
+    icon.trim(),
     heading.trim(),
     main.trim(),
     description.trim(),

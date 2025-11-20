@@ -1,9 +1,13 @@
 import React from 'react';
 import Navbar from '../../components/managerComponents/Navbar';
+import TopNavbar from '../../components/managerComponents/TopNavbar';
+import Sidebar from '../../components/managerComponents/Sidebar';
 
 const Guide = () => {
   return (
     <>
+    <TopNavbar />
+    <Sidebar />
     <Navbar />
     <div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center px-4">
       <div className="text-center">

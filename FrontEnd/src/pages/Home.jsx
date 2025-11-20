@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import "../../css_files/home.css"
-import Navbar from '../../components/managerComponents/Navbar.jsx'
-import axiosInstance from "../../functions/axios.js"
-import { useAuthStore } from '../../stores/useAuthStore.js'
+import "../css_files/home.css"
+import Navbar from '../components/managerComponents/Navbar.jsx'
+import axiosInstance from "../functions/axios.js"
+import { useAuthStore } from '../stores/useAuthStore.js'
 import { Loader } from 'lucide-react'
-import TopNavbar from '../../components/managerComponents/TopNavbar.jsx'
-import Sidebar from '../../components/managerComponents/Sidebar.jsx'
+import TopNavbar from '../components/managerComponents/TopNavbar.jsx'
+import Sidebar from '../components/managerComponents/Sidebar.jsx'
 
 const Home = () => {
-  const { isLoading, setAuthUser, setIsLoading, authUser } = useAuthStore();
+  const { isLoading, setAuthUser, setIsLoading, authUser, login} = useAuthStore();
   useEffect(() => {
     if (localStorage.getItem("jwt")) {
       setIsLoading(true)
@@ -34,23 +34,17 @@ const Home = () => {
   }
   const handle_submit = async (e) => {
     e.preventDefault();
-    setIsLoading(true)
-    try {
-      const res = await axiosInstance.post("/auth/login", formData);
-      setIsLoading(false)
-      setAuthUser(res.data);
-      localStorage.setItem("token", res.data.token);
-      console.log(res.data.token)
-      navigate(`/${res.data.role}`)
-    } catch (error) {
-      setIsLoading(false)
-      console.log(error);
-    }
-
+    //here just login(formdata) have to be called
+    
+    //here just login(formdata) have to be called
+    const result = await login(formData);
+    if(result) navigate(`/${result}`)
 
     //making a auth req to server
     //if server responds with bad response, show error to user
     //if server set authUser value
+     
+    
   }
 
   return (
@@ -87,6 +81,7 @@ const Home = () => {
                   <option value="manager">Manager</option>
                   <option value="principal">Principal</option>
                   <option value="teacher">Teacher</option>
+                  <option value="admin">Admin</option>
                 </select>
               </div>
               <div className='mx-auto mt-5'>
