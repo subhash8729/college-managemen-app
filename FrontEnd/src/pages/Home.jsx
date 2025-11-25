@@ -82,6 +82,7 @@ const Home = () => {
                   <option value="principal">Principal</option>
                   <option value="teacher">Teacher</option>
                   <option value="admin">Admin</option>
+                  <option value="hod">Head of Departmet</option>
                 </select>
               </div>
               <div className='mx-auto mt-5'>

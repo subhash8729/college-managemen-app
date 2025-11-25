@@ -29,6 +29,24 @@ export const useAdminStore = create((set, get) => ({
             return false;
         }
     },
+    add_employee: async (data) => {
+        try {
+            const { setIsLoading } = useAuthStore.getState();
+            data.token = localStorage.getItem("token");
+            setIsLoading(true);
+            console.log(data);
+            const res = await axiosInstance.post("/admin/add-employees", data);
+            toast.success("Success");
+            setIsLoading(false);
+            return true;
+        } catch (error) {
+            const { setIsLoading } = useAuthStore.getState();
+            console.error(error)
+            toast.error(error?.response?.data?.message || "Something went wrong");
+            setIsLoading(false);
+            return false;
+        }
+    },
     fetchClasses: async () => {
         try {
             //setting loading to on
@@ -50,5 +68,41 @@ export const useAdminStore = create((set, get) => ({
             setIsLoading(false)
             return false;
         }
-    }
+    },
+    edit_employee_form_fn: async (data) => {
+        try {
+            const { setIsLoading } = useAuthStore.getState();
+            data.token = localStorage.getItem("token");
+            setIsLoading(true);
+            console.log(data);
+            const rows = await axiosInstance.post("/admin/edit-employees", data);
+            toast.success("Success");
+            setIsLoading(false);
+            return rows;
+        } catch (error) {
+            const { setIsLoading } = useAuthStore.getState();
+            console.error(error)
+            toast.error(error?.response?.data?.message || "Something went wrong");
+            setIsLoading(false);
+            return false ;
+        }
+    },
+    add_branch : async (data) => {
+        try {
+            const { setIsLoading } = useAuthStore.getState();
+            data.token = localStorage.getItem("token");
+            setIsLoading(true);
+            console.log(data);
+            await axiosInstance.post("/admin/add-branch", data);
+            toast.success("Success");
+            setIsLoading(false);
+            return true;
+        } catch (error) {
+            const { setIsLoading } = useAuthStore.getState();
+            console.error(error)
+            toast.error(error?.response?.data?.message || "Something went wrong");
+            setIsLoading(false);
+            return false ;
+        }
+    },
 })) 
