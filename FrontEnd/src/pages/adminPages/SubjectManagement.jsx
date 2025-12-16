@@ -17,6 +17,7 @@ const Admin_subjectManagement = () => {
             <TopNavbar />
             <NavbarAdmin props={"subjectManagement"} />
             <Sidebar props={"admin"} />
+            
         </div>
     )
 }

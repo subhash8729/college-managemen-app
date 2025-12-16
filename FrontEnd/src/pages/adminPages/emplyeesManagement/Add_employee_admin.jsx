@@ -8,13 +8,18 @@ import { useAdminStore } from '../../../stores/useAdminStore';
 
 const Admin_addEmployees = () => {
     const { setIsLoading, isLoading } = useAuthStore();
+    const [is_custom_role_opened, set_is_custom_role_opened] = useState(false)
     const { add_employee } = useAdminStore();
     const [formData, setFormData] = useState({
-        employee_name:"",
-        employee_year:"",
-        employee_role:"",
-        token:"",
+        employee_name: "",
+        employee_year: "",
+        employee_role: "",
+        token: "",
     })
+    const handle_select_change = (e) => {
+        if (e.target.value === "other") set_is_custom_role_opened(true)
+        else set_is_custom_role_opened(false)
+    }
 
     const handle_change = (e) => {
         setFormData(prev => ({
@@ -28,9 +33,6 @@ const Admin_addEmployees = () => {
         add_employee(formData);
 
     }
-    useEffect(() => {
-        console.log(formData)
-    }, [formData])
 
     return (
         <div className='w-full relative min-h-screen bg-gradient-to-br from-[#10172C] via-[#453181] to-[#3B1C63]'>
@@ -57,7 +59,7 @@ const Admin_addEmployees = () => {
                             </div>
                             <div>
                                 <div className='text-2xl p-2 text-white/70 font-extrabold'>Select the Role of Employee</div>
-                                <select className='h-[60px] bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black text-lg font-medium' name="employee_role" id="role">
+                                <select onChange={handle_select_change} className='h-[60px] bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black text-lg font-medium' name="employee_role" id="role">
                                     <option value="">-  -  -  Select a Role  -  -  -</option>
                                     <option value="teacher">Teacher</option>
                                     <option value="mentor">Mentor</option>
@@ -65,8 +67,10 @@ const Admin_addEmployees = () => {
                                     <option value="principal">Principal</option>
                                     <option value="professor">Professor</option>
                                     <option value="hod">HOD (Head of Department)</option>
+                                    <option value="other">Other (not mentioned above)</option>
                                 </select>
                             </div>
+
 
                             <div>
                                 <div className='text-2xl p-2 text-white/70 font-extrabold'>Year <span className='text-sm font-medium text-gray-300'>(in which the perticular staff is working )</span></div>
@@ -80,6 +84,14 @@ const Admin_addEmployees = () => {
 
                                 </select>
                             </div>
+                            {
+                                is_custom_role_opened && (
+                                    <div>
+                                        <div className='text-2xl p-2 text-white/70 font-extrabold'>mention name of other role</div>
+                                        <input maxLength={30} className='h-[60px] bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black text-lg font-medium' type='text' name="employee_role" id="year" />
+                                    </div>
+                                )
+                            }
                         </div>
                         <button onClick={handle_submit} className='px-4 py-2 text-white font-bold mt-5 block mx-auto bg-green-800 rounded-md' type='button'>Submit</button>
                     </form>

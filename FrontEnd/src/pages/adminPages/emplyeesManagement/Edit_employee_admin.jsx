@@ -52,7 +52,7 @@ const Admin_editEmployees = () => {
                                 <option value="second_year">Second-Year Employees</option>
                                 <option value="third_year">Third-Year Employees</option>
                                 <option value="fourth_year">Fourth-Year Employees</option>
-                                <option value="common">Common Employees</option>
+                                <option value="every_year">Common Employees</option>
                             </select>
                             <button className='px-5 py-2 bg-green-900 rounded-lg' type="submit">Find</button>
                         </div>

@@ -24,7 +24,12 @@ import Admin_TimeTable_slots from './pages/adminPages/timetable_management_pages
 import NotFound404 from './pages/NotFound'
 import Admin_branchManagement_home from './pages/adminPages/BranchManagement'
 import Admin_branchManagement_add_branch from './pages/adminPages/branchManagementPages/AddBranch'
+import Admin_branchManagement_edit_branches from './pages/adminPages/branchManagementPages/BranchManagement'
+import { useAdminStore } from './stores/useAdminStore'
+import AddSubject from './pages/adminPages/subjectManagement/AddSubject'
+import Admin_EditSubject from './pages/adminPages/subjectManagement/EditSubject'
 const App = () => {
+  
 
   useEffect(()=>{
     document.body.style.overflowX ="hidden";
@@ -55,11 +60,14 @@ const App = () => {
 
       <Route path='/admin/branch-management' element={<Admin_branchManagement_home />}/>  
       <Route path='/admin/branch-management/add-branch' element={<Admin_branchManagement_add_branch />}/>  
+      <Route path='/admin/branch-management/edit-branches' element={<Admin_branchManagement_edit_branches />}/>  
 
       <Route path='/admin/timetable-management' element={<Admin_timetableManagement_home />}/>  
       <Route path='/admin/timetable-management/time-slot-setup' element={< Admin_TimeTable_slots />}/>  
       
       <Route path='/admin/subject-management' element={<Admin_subjectManagement />}/>  
+      <Route path='/admin/subject-management/add-subject' element={<AddSubject />}/>  
+      <Route path='/admin/subject-management/edit-subject' element={<Admin_EditSubject />}/>  
 
       <Route path='/hod' element={<Home_hodPage />}/>               
       <Route path='*' element={<NotFound404 />}/>               

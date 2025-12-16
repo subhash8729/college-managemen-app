@@ -9,26 +9,19 @@ import { useAdminStore } from '../../../stores/useAdminStore';
 const Admin_EditClasses = () => {
 
     const { isLoading } = useAuthStore();
-    const { fetchClasses } = useAdminStore();
+    const { fetchClasses, getClasses } = useAdminStore();
     const { classes } = useAdminStore();
-    const [first_year, setFirst_year] = useState([]);
-    const [second_year, setSecond_year] = useState([]);
-    const [third_year, setThird_year] = useState([]);
-    const [fourth_year, setFourth_year] = useState([]);
 
+//interface should be - first year - cse-a, cse-b, cse-c, aids-a, aids-b, it 
+//getting class names by calling the api like getClasses
+//getting class state
+//filtering data into first_year, second_year, third_year, fourth_year
 
     useEffect(() => {
         //here we have to fetch all the classes from server to show below right
-        fetchClasses();
+        getClasses();
     }, [])
-    useEffect(() => {
-        if (classes.length > 0) {
-            setFirst_year(classes.filter(v => v.year === "first year"));
-            setSecond_year(classes.filter(v => v.year === "second year"));
-            setThird_year(classes.filter(v => v.year === "third year"));
-            setFourth_year(classes.filter(v => v.year === "fourth year"));
-        }
-    }, [classes]);
+    
 
     return (
         <div className='w-full relative min-h-screen bg-gradient-to-br from-[#10172C] via-[#453181] to-[#3B1C63]'>
@@ -50,17 +43,14 @@ const Admin_EditClasses = () => {
 
                     {/* First year data */}
                     <div className='font-bold text-lg mt-6 mb-2 text-black px-1'>First Year</div>
-                    <div className='w-full grid md:grid-cols-2 gap-4'>
+                    <div className='w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
 
                         {
-                            first_year.length > 0 ? (first_year.map((value) => (
+                            classes.length > 0 ? (classes.map((value) => (
 
-                                <div key={value.number} className='min-h-[60px] p-2 text-sm flex items-center justify-between bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black font-medium'>
+                                <div key={value.class_id} className='min-h-[60px] p-2 text-sm flex items-center justify-between bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black font-medium'>
                                     <div className='flex items-center gap-5'>
-                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>{value.classname}
-                                        </span>
-                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>
-                                            {value.section}
+                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>{value.class_name}
                                         </span>
                                     </div>
 
@@ -77,17 +67,14 @@ const Admin_EditClasses = () => {
 
                     {/* Second year data */}
                     <div className='font-bold text-lg mt-6 mb-2 text-black px-1'>Second Year</div>
-                    <div className='w-full grid md:grid-cols-2 gap-4'>
+                    <div className='w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
 
                         {
-                            second_year.length > 0 ? (second_year.map((value) => (
+                            classes.length > 0 ? (classes.map((value) => (
 
-                                <div key={value.number} className='min-h-[60px] p-2 text-sm flex items-center justify-between bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black font-medium'>
+                                <div key={value.class_id} className='min-h-[60px] p-2 text-sm flex items-center justify-between bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black font-medium'>
                                     <div className='flex items-center gap-5'>
-                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>{value.classname}
-                                        </span>
-                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>
-                                            {value.section}
+                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>{value.class_name}
                                         </span>
                                     </div>
 
@@ -103,17 +90,14 @@ const Admin_EditClasses = () => {
 
                     {/* Third year data */}
                     <div className='font-bold text-lg mt-6 mb-2 text-black px-1'>Third Year</div>
-                    <div className='w-full grid md:grid-cols-2 gap-4'>
+                    <div className='w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
 
                         {
-                            third_year.length > 0 ? (third_year.map((value) => (
+                            classes.length > 0 ? (classes.map((value) => (
 
-                                <div key={value.number} className='min-h-[60px] p-2 text-sm flex items-center justify-between bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black font-medium'>
+                                <div key={value.class_id} className='min-h-[60px] p-2 text-sm flex items-center justify-between bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black font-medium'>
                                     <div className='flex items-center gap-5'>
-                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>{value.classname}
-                                        </span>
-                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>
-                                            {value.section}
+                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>{value.class_name}
                                         </span>
                                     </div>
 
@@ -131,17 +115,14 @@ const Admin_EditClasses = () => {
 
                     {/* Fourth year data */}
                     <div className='font-bold text-lg mt-6 mb-2 text-black px-1'>Fourth Year</div>
-                    <div className='w-full grid md:grid-cols-2 gap-4'>
+                    <div className='w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
 
                         {
-                            fourth_year.length > 0 ? (fourth_year.map((value) => (
+                            classes.length > 0 ? (classes.map((value) => (
 
-                                <div key={value.number} className='min-h-[60px]  p-2 flex items-center justify-between bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black text-sm font-medium'>
+                                <div key={value.class_id} className='min-h-[60px] p-2 text-sm flex items-center justify-between bg-white/30 rounded-lg px-4 -tracking-tighter w-full text-black font-medium'>
                                     <div className='flex items-center gap-5'>
-                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>{value.classname}
-                                        </span>
-                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>
-                                            {value.section}
+                                        <span className='h-full  px-4 rounded-sm py-1 bg-white/80'>{value.class_name}
                                         </span>
                                     </div>
 

@@ -48,9 +48,9 @@ const Home = () => {
   }
 
   return (
-    <div className='relative'>
+    <div className='relative w-full min-h-screen bg-gradient-to-br from-[#10172C] via-[#453181] to-[#3B1C63]'>
       {
-        isLoading && (<div className='w-full h-screen absolute z-20 bg-white/20 backdrop-blur-[5px] flex items-center justify-center'>
+        isLoading && (<div className='w-full h-screen fixed z-20 bg-white/10 backdrop-blur-[5px] flex items-center justify-center'>
           <Loader className='scale-300 animate-spin' />
         </div>)
       }
@@ -61,7 +61,7 @@ const Home = () => {
       <div className='w-full flex px-3 flex-col bg-blue-400/20'>
         {/* college info */}
         <div className='w-full py-5 mt-3 rounded-lg'>
-          <div className='image w-[150px] mx-auto h-[150px] mt-3 rounded-full bg-red-400' ></div>
+          <div className='image w-[150px] mx-auto h-[150px] mt-3' ></div>
           <div className='text-center font-bold text-2xl mt-4'>Arya College Of Engineering and I.T.</div>
         </div>
 
@@ -69,13 +69,13 @@ const Home = () => {
         <form onSubmit={handle_submit} onChange={handle_change} autoComplete='off'>
           <div className='w-full my-3 rounded-lg flex flex-col bg-blue-400/10'>
             <div className='mx-auto flex'>
-              <span className='bg-black/30 rounded-b-2xl font-bold px-4 py-3'>Log In</span>
+              <span className='bg-white/40 rounded-b-2xl font-bold px-4 py-3'>Log In</span>
             </div>
 
-            <div className='mt-5 flex flex-col'>
+            <div className='mt-2 flex flex-col'>
               <div className='mx-auto'>
-                <p>You are a</p>
-                <select className='border-2 border-black/40 rounded-2xl px-4 py-2 w-[300px]' name="role" id="role">
+                <p className='font-bold text-lg text-white px-1'>You are a</p>
+                <select className='border-2 border-black/40 bg-white rounded-2xl px-4 py-2 w-[300px]' name="role" id="role">
                   <option value="none">-  -  -  -  -  -  -  - Select Role -  -  -  -  -  -  -  -</option>
                   <option value="student">Student</option>
                   <option value="manager">Manager</option>
@@ -86,12 +86,12 @@ const Home = () => {
                 </select>
               </div>
               <div className='mx-auto mt-5'>
-                <p>Username</p>
-                <input className='border-2 border-black/40 rounded-2xl px-4 py-2 w-[300px]' name='username' type="text" placeholder='Enter username' />
+                <p className='font-bold text-lg text-white px-1'>Username</p>
+                <input className='border-2 border-black/40 focus:outline-none focus:shadow-lg focus:scale-105 transition-all bg-white rounded-2xl px-4 py-2 w-[300px]' name='username' type="text" placeholder='Enter username' />
               </div>
               <div className='mx-auto mt-5'>
-                <p>Password</p>
-                <input className='border-2 border-black/40 rounded-2xl px-4 py-2 w-[300px]' name='password' type="password" placeholder='Enter password' />
+                <p className='font-bold text-lg text-white px-1'>Password</p>
+                <input className='border-2 border-black/40 focus:outline-none focus:shadow-lg focus:scale-105 transition-all bg-white rounded-2xl px-4 py-2 w-[300px]' name='password' type="password" placeholder='Enter password' />
               </div>
               <div className='flex text-white justify-center my-4'>
                 <button className='px-4 py-2 cursor-pointer rounded-lg bg-[#1F3E18]'>Submit</button>

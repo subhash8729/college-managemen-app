@@ -29,7 +29,7 @@ const Admin_branchManagement_home = () => {
 
 
                         <div className='w-full grid gap-4 md:grid-cols-2'>
-                            kya re betichod
+                            Content........
                         </div>
                     </form>
                 </div>
